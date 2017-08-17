@@ -18,9 +18,6 @@ $PO_LOW = "bike"            #Pushover sound for low-priority notification
 
 ### END USER SETTINGS
 
-Set-PushoverSession -token $PO_TOKEN -user $PO_USER
-
-
 ###
 # Set output formatting for custom object
 ###
@@ -46,6 +43,9 @@ $content | Foreach {$n=1}{if ($n++ -ne 2) {$_}} > $LOG_FILE
 ###
 # Define helper functions
 ###
+
+# Notifications via Pushover
+Set-PushoverSession -token $PO_TOKEN -user $PO_USER
 function Notify-Admin( [String]$Title = "Operation Completed", [String]$Message = "", [String]$Sound = "pushover") {
     Send-PushoverMessage $Message -title $Title -sound $Sound
 }
